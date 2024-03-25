@@ -4,6 +4,8 @@ import os
 from datetime import datetime
 from ultralytics import YOLO
 
+# Created by Coder Shiyar | https://github.com/codershiyar | https://codershiyar.com
+
 # Function to initialize webcam
 def initialize_webcam():
     return cv2.VideoCapture(0)
