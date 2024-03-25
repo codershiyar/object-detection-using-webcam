@@ -16,7 +16,7 @@ Before running the script, ensure you have the following dependencies installed:
 - OpenCV (`pip install opencv-python`)
 - Ultralytics (`pip install ultralytics`)
 - Pre-trained YOLOv8 model (provide your model path in the script)
-- [PyRealSense2](pip install pyrealsense2) (optional, for working with RealSense cameras)
+- PyRealSense2 (`pip install pyrealsense2`) (optional, for working with RealSense cameras)
 - [PyRealSense2](https://github.com/IntelRealSense/librealsense) (optional, for working with RealSense cameras)
 
 ## Usage
