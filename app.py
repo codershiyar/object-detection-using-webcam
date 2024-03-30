@@ -72,7 +72,14 @@ if __name__ == "__main__":
 
 
 
-
+   # def initialize_realsense():
+    #    import pyrealsense2 as rs
+    #    pipeline = rs.pipeline()
+     #   camera_aconfig = rs.config()
+      #  camera_aconfig.enable_stream(rs.stream.depth, *config.DEPTH_CAMERA_RESOLUTION, rs.format.z16, config.DEPTH_CAMERA_FPS)
+     #   camera_aconfig.enable_stream(rs.stream.color, *config.COLOR_CAMERA_RESOLUTION, rs.format.bgr8, config.COLOR_CAMERA_FPS)
+     #   pipeline.start(camera_aconfig)
+      #  return pipeline
 # try:
 #     # Try to initialize RealSense Camera
 #     camera = initialize_realsense()
