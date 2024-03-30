@@ -6,16 +6,6 @@ from ultralytics import YOLO
 
 # Created by Coder Shiyar | https://github.com/codershiyar | https://codershiyar.com
 
-# Function to initialize webcam
-def initialize_webcam():
-    return cv2.VideoCapture(0)
-
-
-# Load YOLOv8 model with options
-def load_model():
-    return YOLO('model_buckets_with_handlesv14n.pt')
-
-    
 # Function to detect objects using YOLOv8
 def detect_objects(model, image):
     # Example options (adjust as needed)
@@ -40,10 +30,10 @@ def save_image(image, directory='captures'):
 # Main function
 def main():
     # Load YOLOv8 model
-    yolo_model = load_model()
+    yolo_model = return YOLO('selectyourmodelhere.pt')
 
     # Initialize webcam
-    webcam = initialize_webcam()
+    webcam = cv2.VideoCapture(0)
 
     # Main loop
     while True:
