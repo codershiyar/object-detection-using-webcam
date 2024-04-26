@@ -1,77 +1,44 @@
-import cv2
-import numpy as np
-import os
-from datetime import datetime
-from ultralytics import YOLO
-
 # Created by Coder Shiyar | https://github.com/codershiyar | https://codershiyar.com
 
-# Function to detect objects using YOLOv8
-def detect_objects(model, image):
-    # Example options (adjust as needed)
-    options = {
-        'conf': 0.5,          # Confidence threshold
-        'iou': 0.4,           # NMS threshold
-        'imgsz': 640,      # Model input resolution
-    }
-    results = model.track(image, **options)
+import cv2
+from ultralytics import YOLO
 
-    return results
+# Load YOLO model
+model = YOLO('yolov8n.pt')
 
-# Function to save image
-def save_image(image, directory='captures'):
-    if not os.path.exists(directory):
-        os.makedirs(directory)
-    filename = datetime.now().strftime('%Y-%m-%d_%H-%M-%S') + '_detected.jpg'
-    filepath = os.path.join(directory, filename)
-    cv2.imwrite(filepath, image)
-    print("Image saved as:", filepath)
+# Initialize webcam
+webcam = cv2.VideoCapture(0)
 
-# Main function
-def main():
-    # Load YOLOv8 model
-    yolo_model = return YOLO('selectyourmodelhere.pt')
+while True:
+    # Capture frame from webcam
+    ret, frame = webcam.read()
 
-    # Initialize webcam
-    webcam = cv2.VideoCapture(0)
+    # Check if frame is captured successfully
+    if not ret:
+        print("Failed to capture frame")
+        break
 
-    # Main loop
-    while True:
-        # Capture frame from webcam
-        ret, frame = webcam.read()
-        if not ret:
-            print("Failed to capture frame")
-            break
+    # Detect objects in the frame
+    results = model.track(frame, conf=0.5, imgsz=480, classes=0)
 
-        # Detect objects in the frame
-        results = detect_objects(yolo_model, frame)
+    # Display total number of detected objects and bounding boxes
+    for result in results:
+        cv2.putText(frame, f"Total: {len(result.boxes)}", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2, cv2.LINE_AA)
+        cv2.imshow('YOLOv8 Object Detection', result.plot())
 
-        # Draw bounding boxes and labels
-        for result in results:
-                cv2.putText(frame, f"Total:{len(result.boxes)}" , (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2, cv2.LINE_AA)
+    # Exit loop if ESC key is pressed
+    if cv2.waitKey(1) == 27:
+        break
 
-        # Display the frame
-        cv2.imshow('YOLOv8 Object Detection', results[0].plot())
-
-        # Check for user input
-        key = cv2.waitKey(1)
-        if key == ord('s'):
-            save_image(frame)  # Save image when 's' key is pressed
-        elif key == 27:  # ESC key
-            break
-
-    # Release resources
-    webcam.release()
-    cv2.destroyAllWindows()
-
-if __name__ == "__main__":
-    main()
+# Release webcam and close OpenCV windows
+webcam.release()
+cv2.destroyAllWindows()
 
 
 
 
 
-
+# For Realsense camera
    # def initialize_realsense():
     #    import pyrealsense2 as rs
     #    pipeline = rs.pipeline()
