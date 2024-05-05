@@ -40,7 +40,7 @@ python yolov8.py
 
 - For training YOLOv8 on a custom dataset, you can use the [Roboflow platform](https://roboflow.com/).
 - To learn how to train YOLOv8 on a custom dataset using a Google Colab notebook, refer to [this Colab notebook](https://colab.research.google.com/github/roboflow-ai/notebooks/blob/main/notebooks/train-yolov8-object-detection-on-custom-dataset.ipynb#scrollTo=D2YkphuiaE7_).
-
+- Models: https://docs.ultralytics.com/tasks/detect/#models
 ## Acknowledgments
 
 - This script is based on Ultralytics' YOLOv5 repository.
